@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:security="http://www.springframework.org/schema/security"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+	
+	
+	<security:http pattern="/login.jsp*" auto-config="true" security="none" />
+	
+	<security:http auto-config="true">
+	
+		<security:form-login login-page="/login.jsp" />
+		<security:intercept-url pattern="/**" access="ROLE_TestUser"/>
+		
+		<security:custom-filter position="FORM_LOGIN_FILTER" ref="checkUserFilter"/>
+	</security:http>
+	
+	<bean id="checkUserFilter" class="com.lyle.CheckUserFilter"></bean>
+	
+	<!-- 认证管理器 定义ROLE_USER -->
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:user-service>
+				<security:user name="user" password="user" authorities="ROLE_TestUser"/>
+			</security:user-service>
+		</security:authentication-provider>
+	</security:authentication-manager>
+</beans>
