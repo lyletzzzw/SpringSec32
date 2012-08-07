@@ -11,12 +11,12 @@
 		<table>
 			<tr>
 				<td>用户名:</td>
-				<td><input type='text' name='j_username' value=''>
+				<td><input type='text' name='userName' value=''>
 				</td>
 			</tr>
 			<tr>
 				<td>密码:</td>
-				<td><input type='password' name='j_password' />
+				<td><input type='password' name='password' />
 				</td>
 			</tr>
 			<tr>
