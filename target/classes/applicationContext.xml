@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+                      
+    <http pattern="/login.jsp*" security="none" />  
+	<http auto-config="false" entry-point-ref="myAuthenticationEntryPoint">
+		<intercept-url pattern="/**" access="ROLE_TestUser"/>
+		<custom-filter position="FORM_LOGIN_FILTER" ref="checkUserFilter"/>
+	</http>
+	
+	<beans:bean id="checkUserFilter" class="com.lyle.CheckUserFilter">
+		<beans:property name="authenticationManager" ref="myAuthenticationManager"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="myAuthenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+		 <beans:property name="loginFormUrl" value="/login.jsp"></beans:property>
+	</beans:bean>	
+	
+	<!-- 认证管理器 定义ROLE_USER -->
+	<authentication-manager alias="myAuthenticationManager">
+		<authentication-provider>
+			<user-service>
+				<user name="user" password="user" authorities="ROLE_TestUser"/>
+			</user-service>
+		</authentication-provider>
+	</authentication-manager>
+</beans:beans>
