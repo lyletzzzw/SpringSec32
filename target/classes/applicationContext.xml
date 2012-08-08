@@ -8,13 +8,23 @@
     <http pattern="/login.jsp*" security="none" />  
 	<http auto-config="false" entry-point-ref="myAuthenticationEntryPoint">
 		<intercept-url pattern="/**" access="ROLE_TestUser"/>
-		<custom-filter position="FORM_LOGIN_FILTER" ref="checkUserFilter"/>
+		<custom-filter position="FORM_LOGIN_FILTER" ref="userLoginFilter"/>
+		<custom-filter before="FILTER_SECURITY_INTERCEPTOR" ref="myFilterSecurityInterceptor"/>
 	</http>
 	
-	<beans:bean id="checkUserFilter" class="com.lyle.CheckUserFilter">
-		<beans:property name="authenticationManager" ref="myAuthenticationManager"></beans:property>
+	<beans:bean id="userLoginFilter" class="com.lyle.login.UserLoginFilter">
+		<beans:property name="authenticationManager" ref="myAuthenticationManager" />
 	</beans:bean>
 	
+	<beans:bean id="myFilterSecurityInterceptor" class="com.lyle.securityInterceptor.MyFilterSecurityInterceptor">
+		<beans:property name="securityMetadataSource" ref="securityMetadataSource" />
+		<beans:property name="authenticationManager" ref="myAuthenticationManager" />
+		<beans:property name="accessDecisionManager" ref="myAccessDecisionManagerBean" />
+	</beans:bean>
+
+	<beans:bean id="securityMetadataSource" class="com.lyle.securityInterceptor.MyInvocationSecurityMetadataSource" />
+	<beans:bean id="myAccessDecisionManagerBean" class="com.lyle.securityInterceptor.MyAccessDecisionManager" />
+
 	<beans:bean id="myAuthenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
 		 <beans:property name="loginFormUrl" value="/login.jsp"></beans:property>
 	</beans:bean>	

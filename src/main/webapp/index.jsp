@@ -8,7 +8,7 @@
 <title>首页</title>
 </head>
 <body>
-	<h2>version:Spring Sec3 2.0</h2>
+	<h2>version:Spring Sec3 3.0</h2>
 	这是首页，欢迎您！！！
 
 <%
