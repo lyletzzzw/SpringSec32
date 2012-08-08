@@ -8,10 +8,10 @@
     <http pattern="/login.jsp*" security="none" />  
 	<http auto-config="false" entry-point-ref="myAuthenticationEntryPoint">
 		<intercept-url pattern="/**" access="ROLE_TestUser"/>
-		<custom-filter position="FORM_LOGIN_FILTER" ref="checkUserFilter"/>
+		<custom-filter position="FORM_LOGIN_FILTER" ref="userLoginFilter"/>
 	</http>
 	
-	<beans:bean id="checkUserFilter" class="com.lyle.CheckUserFilter">
+	<beans:bean id="userLoginFilter" class="com.lyle.login.UserLoginFilter">
 		<beans:property name="authenticationManager" ref="myAuthenticationManager"></beans:property>
 	</beans:bean>
 	

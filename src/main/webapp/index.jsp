@@ -9,7 +9,6 @@
 </head>
 <body>
 	<h2>version:Spring Sec3 2.0</h2>
-	这是首页，欢迎您！！！
 
 <%
 	Enumeration men = session.getAttributeNames();

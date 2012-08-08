@@ -1,4 +1,4 @@
-package com.lyle;
+package com.lyle.login;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,7 +11,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.util.Assert;
 
 
-public class CheckUserFilter extends UsernamePasswordAuthenticationFilter {
+public class UserLoginFilter extends UsernamePasswordAuthenticationFilter {
 
     public static final String SPRING_SECURITY_FORM_USERNAME_KEY = "userName";
     public static final String SPRING_SECURITY_FORM_PASSWORD_KEY = "password";
