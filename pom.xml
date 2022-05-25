@@ -9,7 +9,7 @@
 
 	<!-- 项目属性 -->
 	<properties>
-		<spring.version>3.1.0.RELEASE</spring.version>
+		<spring.version>5.5.7</spring.version>
 	</properties>
 
 	<dependencies>
